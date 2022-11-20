@@ -9,7 +9,7 @@
 <br />
 
 <p>
-    <a asp-action="Create">Dodaj książkę</a>
+    <a asp-action="Create" class="btn btn-primary">Dodaj książkę</a>
 </p>
 <table class="table">
     <thead>
@@ -51,9 +51,11 @@
                 @Html.DisplayFor(modelItem => item.ISBN)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id=" @item.Id">Edytuj</a>
+                    <br>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Szczegóły</a>
+                    <br>
+                    <a asp-action="Delete" class="btn btn-warning" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
 }

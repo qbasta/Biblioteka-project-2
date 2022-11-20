@@ -39,6 +39,7 @@ namespace Biblioteka_project_2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
