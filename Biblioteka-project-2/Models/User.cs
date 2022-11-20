@@ -10,11 +10,10 @@ namespace Biblioteka_project_2.Models
     {
         public int Id { get; set; }
         public string email { get; set; }
-
-        public DateTime? DateOfBirth { get; set; }
-
+        
         [Display(Name = "Twój rok urodzenia")]
         [Column(TypeName = "varchar(100)")]
+        public DateTime? DateOfBirth { get; set; }
         public int? Year { get; set; }
 
         public string? Name { get; set; }
