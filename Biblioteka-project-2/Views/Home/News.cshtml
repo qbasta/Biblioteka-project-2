@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@using(Html.BeginForm()){
+<br />
+<center>
+    <h1>Nowości: </h1>
+    </center>
+<br />
+
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 200rem;">
+        <div class="card-body">
+            <center>
+            <div class="card-header h3">Szkolenie pracowników "Mola Książkowego"  </div> 
+            
+             <br/>
+    <div>
+        <img src="~/Szkolenie.jpg" width="400" height = "200"> 
+    </div>
+    </center>
+    <br/>
+            <p class="card-text word-break">9 listopada odbyło się ostatnie szkolenie w ramach przedsięwzięcia grantowego pt. „Biblioteka bliżej Ciebie:
+                rozbudowa oferty Książnicy Podlaskiej w kierunku dostępności dla osób ze szczególnymi potrzebami.”
+                W cyklu szkoleń, które trwały od 26 września do 9 listopada 2022 roku wzięło udział 20 pracowników naszej biblioteki. </p>
+        </div>
+    </div>
+
+   
+
+    <div class="card text-white bg-primary mb-3" style="max-width: 200rem;">
+        <div class="card-body">
+             <center>
+            <div class="card-header h3"> Konkurs "I Ty możesz zostać molem książkowym!"</div>
+    <br/>
+     <div>
+        <img src="~/Konkurs.jpg" width="400" height = "200">
+     </div>
+      </center>
+    <br/>
+            <p class="card-text word-break">
+                Z okazji kolejnej rocznicy funkcjonowania biblioteki "Mol Książkowy" dnia 22.11.2022r. w bibliotece "Mol Książkowy" organizowany jest konkurs czytania jak największej liczby stron
+                w ograniczonym czasie. Wstęp jest dowolny! Dla zwycięzców przewidziane są nagrody! Wszystkich chętnych bardzo serdecznie zapraszamy!
+            </p>
+        </div>
+    </div>
+}
