@@ -39,6 +39,11 @@ namespace Biblioteka_project_2.Models
         [MaxLength(13, ErrorMessage = "Maksymalna długość ISBN to 13 znaków!")]
         [Column(TypeName = "varchar(13)")]
         public string ISBN { get; set; }
+        
+        [Required(ErrorMessage = "Te pole jest wymagane!")]
+        [DisplayName("Ilość")]
+        [Range(0,100, ErrorMessage = "Wartość nie może być ujemna!")]
+        public int Amount { get; set; }
      
     }
 }

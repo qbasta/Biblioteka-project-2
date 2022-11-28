@@ -30,6 +30,9 @@ namespace Biblioteka_project_2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<string>("Autor")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -39,7 +42,6 @@ namespace Biblioteka_project_2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)

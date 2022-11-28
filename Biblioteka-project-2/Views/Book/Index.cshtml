@@ -31,6 +31,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ISBN)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -52,6 +55,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
                     <a asp-action="Edit" class="btn btn-primary" asp-route-id=" @item.Id">Edytuj</a>
