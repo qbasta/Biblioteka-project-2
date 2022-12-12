@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Biblioteka_project_2.Migrations
 {
-    public partial class InitSchema : Migration
+    public partial class initSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

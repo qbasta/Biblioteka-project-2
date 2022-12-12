@@ -58,7 +58,9 @@ namespace Biblioteka_project_2.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(book);
+                _context.Books.Add(book);
+                _context.Authors.Add(new Authors(){ Name = book.Autor });
+                _context.Categories.Add(new Category() { Name = book.Category });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
