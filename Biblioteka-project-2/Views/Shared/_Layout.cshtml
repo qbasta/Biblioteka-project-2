@@ -21,13 +21,13 @@
                         
                         <li class="nav-item">
                             <button type="button" class="btn but-out-line btn-primary">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Strona główna</a>
+                            <a class="nav-link text-dark" @Html.ActionLink(Biblioteka_project_2.Resources.Language.Index, "Index", "Home")</a>
                             </button>
                         </li>
                        
                         <li class="nav-item">
                             <button type="button" class="btn-primary btn but-out-line">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="News">Nowości</a>
+                            <a class="nav-link text-dark" @Html.ActionLink(Biblioteka_project_2.Resources.Language.News, "News", "Home")</a>
                             </button>
                         </li>
                         
@@ -45,13 +45,13 @@
 
                         <li class="nav-item">
                             <button type="button" class="btn-primary btn but-out-line">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">O nas</a>
+                                <a class="nav-link text-dark" @Html.ActionLink(Biblioteka_project_2.Resources.Language.About, "About", "Home")</a>
                             </button>
                         </li>
 
                         <li class="nav-item">
                             <button type="button" class="btn btn-primary btn but-out-line">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a>
+                                <a class="nav-link text-dark" @Html.ActionLink(Biblioteka_project_2.Resources.Language.Contact, "Contact", "Home")</a>
                             </button>
                         </li>
 
