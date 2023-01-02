@@ -141,21 +141,21 @@ namespace Biblioteka_project_2.Migrations
 
             modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"), 1L, 1);
 
-                    b.Property<int>("BookId")
+                    b.Property<int>("BookId1")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("BookId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("BookId1");
 
                     b.HasIndex("CategoryId");
 
@@ -426,13 +426,13 @@ namespace Biblioteka_project_2.Migrations
             modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
                 {
                     b.HasOne("Biblioteka_project_2.Models.Book", "Book")
-                        .WithMany("CategoryGroups")
-                        .HasForeignKey("BookId")
+                        .WithMany()
+                        .HasForeignKey("BookId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Biblioteka_project_2.Models.Category", "Category")
-                        .WithMany("CategoryGroups")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -491,16 +491,6 @@ namespace Biblioteka_project_2.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Biblioteka_project_2.Models.Book", b =>
-                {
-                    b.Navigation("CategoryGroups");
-                });
-
-            modelBuilder.Entity("Biblioteka_project_2.Models.Category", b =>
-                {
-                    b.Navigation("CategoryGroups");
                 });
 #pragma warning restore 612, 618
         }

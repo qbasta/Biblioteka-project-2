@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Biblioteka_project_2.Migrations
 {
-    public partial class InitSchema : Migration
+    public partial class initSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -234,17 +234,17 @@ namespace Biblioteka_project_2.Migrations
                 name: "CategoryGroups",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    BookId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId = table.Column<int>(type: "int", nullable: false),
+                    BookId1 = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryGroups", x => x.Id);
+                    table.PrimaryKey("PK_CategoryGroups", x => x.BookId);
                     table.ForeignKey(
-                        name: "FK_CategoryGroups_Books_BookId",
-                        column: x => x.BookId,
+                        name: "FK_CategoryGroups_Books_BookId1",
+                        column: x => x.BookId1,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -333,9 +333,9 @@ namespace Biblioteka_project_2.Migrations
                 column: "UserId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryGroups_BookId",
+                name: "IX_CategoryGroups_BookId1",
                 table: "CategoryGroups",
-                column: "BookId");
+                column: "BookId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CategoryGroups_CategoryId",
