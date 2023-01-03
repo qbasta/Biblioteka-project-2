@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Biblioteka_project_2.Migrations
 {
-    public partial class initSchema : Migration
+    public partial class InitSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -112,12 +112,10 @@ namespace Biblioteka_project_2.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<string>(type: "varchar(100)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "varchar(100)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ConfirmPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -234,17 +232,17 @@ namespace Biblioteka_project_2.Migrations
                 name: "CategoryGroups",
                 columns: table => new
                 {
-                    BookId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId1 = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryGroups", x => x.BookId);
+                    table.PrimaryKey("PK_CategoryGroups", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CategoryGroups_Books_BookId1",
-                        column: x => x.BookId1,
+                        name: "FK_CategoryGroups_Books_BookId",
+                        column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -260,7 +258,7 @@ namespace Biblioteka_project_2.Migrations
                 name: "Borrows",
                 columns: table => new
                 {
-                    BorrowId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -268,7 +266,7 @@ namespace Biblioteka_project_2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Borrows", x => x.BorrowId);
+                    table.PrimaryKey("PK_Borrows", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Borrows_Books_BookId",
                         column: x => x.BookId,
@@ -333,9 +331,9 @@ namespace Biblioteka_project_2.Migrations
                 column: "UserId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryGroups_BookId1",
+                name: "IX_CategoryGroups_BookId",
                 table: "CategoryGroups",
-                column: "BookId1");
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CategoryGroups_CategoryId",

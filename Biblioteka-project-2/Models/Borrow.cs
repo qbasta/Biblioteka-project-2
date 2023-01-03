@@ -1,8 +1,12 @@
-﻿namespace Biblioteka_project_2.Models
+﻿using MessagePack;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Biblioteka_project_2.Models
 {
     public class Borrow
     {
-        public int BorrowId { get; set; }
+        public int Id { get; set; }
 
         public int BookId { get; set; }
 

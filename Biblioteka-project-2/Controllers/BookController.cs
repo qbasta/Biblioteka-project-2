@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Biblioteka_project_2.Data;
 using Biblioteka_project_2.Models;
+using Microsoft.Data.SqlClient;
+using DocumentFormat.OpenXml.Office.CustomUI;
 
 namespace Biblioteka_project_2.Controllers
 {
@@ -20,9 +22,51 @@ namespace Biblioteka_project_2.Controllers
         }
 
         // GET: Book
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder, string SearchString)
         {
-              return View(await _context.Books.ToListAsync());
+            //przeszukiwanie po nazwie
+            ViewData["CurrentFilter"] = SearchString;
+            var books = from b in _context.Books
+                        select b;
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                books = books.Where(b => b.Title.Contains(SearchString));
+            }
+
+            //przeszukiwanie po kategorii z dropdownlist
+            var CategoriesList = (from b in _context.Books
+                                  select new SelectListItem()
+                                  {
+                                      Text = b.Category,
+                                      Value = b.Id.ToString()
+                                  }).ToList();
+            CategoriesList.Insert(0, new SelectListItem()
+            {
+                Text = "---Wybierz kategorię---",
+                Value = string.Empty
+            });
+            ViewBag.ListOfCategories = CategoriesList;
+            
+
+            //sortowanie po tytule
+            ViewData["TitleSortParam"] = String.IsNullOrEmpty(SortOrder) ? "title_sort" : "";
+            ViewData["CategorySortParam"] = SortOrder == "Category" ? "category_sort" : "category_sort";
+            ViewData["AuthorSortParam"] = SortOrder == "Autor" ? "author_sort" : "author_sort";
+            switch (SortOrder)
+            {
+                case "title_sort":
+                    default:
+                    books = books.OrderBy(b => b.Title);
+                    break;
+                case "category_sort":
+                    books = books.OrderBy(b => b.Category);
+                    break;
+                case "author_sort":
+                    books = books.OrderBy(b => b.Autor); 
+                    break;
+            }
+
+            return View(await books.AsNoTracking().ToListAsync());
         }
 
         // GET: Book/Details/5

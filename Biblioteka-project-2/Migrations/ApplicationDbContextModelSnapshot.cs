@@ -97,11 +97,11 @@ namespace Biblioteka_project_2.Migrations
 
             modelBuilder.Entity("Biblioteka_project_2.Models.Borrow", b =>
                 {
-                    b.Property<int>("BorrowId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BorrowId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BookId")
                         .HasColumnType("int");
@@ -113,7 +113,7 @@ namespace Biblioteka_project_2.Migrations
                     b.Property<int>("UserId1")
                         .HasColumnType("int");
 
-                    b.HasKey("BorrowId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
@@ -141,21 +141,21 @@ namespace Biblioteka_project_2.Migrations
 
             modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
                 {
-                    b.Property<int>("BookId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BookId1")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.HasKey("BookId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BookId1");
+                    b.HasIndex("BookId");
 
                     b.HasIndex("CategoryId");
 
@@ -174,10 +174,6 @@ namespace Biblioteka_project_2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DateOfBirth")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -186,12 +182,9 @@ namespace Biblioteka_project_2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Surname")
+                    b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("email")
                         .IsRequired()
@@ -426,13 +419,13 @@ namespace Biblioteka_project_2.Migrations
             modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
                 {
                     b.HasOne("Biblioteka_project_2.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId1")
+                        .WithMany("CategoryGroups")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Biblioteka_project_2.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("CategoryGroups")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -491,6 +484,16 @@ namespace Biblioteka_project_2.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Biblioteka_project_2.Models.Book", b =>
+                {
+                    b.Navigation("CategoryGroups");
+                });
+
+            modelBuilder.Entity("Biblioteka_project_2.Models.Category", b =>
+                {
+                    b.Navigation("CategoryGroups");
                 });
 #pragma warning restore 612, 618
         }

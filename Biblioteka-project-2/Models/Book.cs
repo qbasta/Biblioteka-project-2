@@ -44,6 +44,7 @@ namespace Biblioteka_project_2.Models
         [DisplayName("Ilość")]
         [Range(0,100, ErrorMessage = "Wartość nie może być ujemna!")]
         public int Amount { get; set; }
-     
+
+        //public ICollection<CategoryGroup> CategoryGroups { get; set; }
     }
 }
