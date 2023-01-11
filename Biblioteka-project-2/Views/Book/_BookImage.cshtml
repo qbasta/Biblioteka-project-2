@@ -1,0 +1,15 @@
+﻿@model Biblioteka_project_2.Models.Book
+
+@{
+    var imgText = "";
+    if (Model.imgPath.EndsWith("cover0.png")){
+        imgText = "Brak zdjęcia dla " + Model.Title;
+    }
+    else 
+    {
+        imgText = "Okładka książki " + Model.Title; 
+    }
+}
+
+
+<img src="@Model.imgPath" class="image-fluid" alt="@imgText" title="@imgText"/>
