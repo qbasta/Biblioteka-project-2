@@ -74,10 +74,6 @@ namespace Biblioteka_project_2.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("imgPath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Books");
@@ -423,7 +419,7 @@ namespace Biblioteka_project_2.Migrations
             modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
                 {
                     b.HasOne("Biblioteka_project_2.Models.Book", "Book")
-                        .WithMany()
+                        .WithMany("CategoryGroups")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -488,6 +484,11 @@ namespace Biblioteka_project_2.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Biblioteka_project_2.Models.Book", b =>
+                {
+                    b.Navigation("CategoryGroups");
                 });
 
             modelBuilder.Entity("Biblioteka_project_2.Models.Category", b =>
