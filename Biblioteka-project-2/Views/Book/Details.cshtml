@@ -1,4 +1,5 @@
 ﻿@model Biblioteka_project_2.Models.Book
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,9 +9,8 @@
 <br />
 <h1>Szczegóły</h1>
 <br />
-
+@Html.Partial("_BookImage")
 <div>
-    <h4>Książka</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -50,6 +50,15 @@
             @Html.DisplayFor(model => model.Amount)
         </dd>
     </dl>
+    <hr />
+</div>
+<div>
+    <h2>Dodatkowe materiały do pobrania:</h2>
+        <dl class="row">
+            <dt classclass="col-sm-2">
+                Spis treści
+            </dt>
+        </dl>
 </div>
 <div>
     <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.Id">Edytuj</a>
