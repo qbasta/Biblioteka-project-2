@@ -10,7 +10,7 @@
 <br />
 @Html.Partial("_BookImage")
 <div>
-    <h4>Książka</h4>
+
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -54,12 +54,17 @@
 </div>
 <div>
     <h2>Dodatkowe materiały do pobrania:</h2>
+    <br />
     <dl class="row">
-        <dt classclass="col-sm-2">
+        <dt class="col-sm-2">
             Spis treści
         </dt>
+        <dd class="col-sm-10">
+            <button type="button" class="btn btn-success">Pobierz</button>
+        </dd>
     </dl>
 </div>
+<hr />
 <div>
     <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.Id">Edytuj</a>
     <a asp-action="Index" class="btn btn-warning">Powrót do listy</a>

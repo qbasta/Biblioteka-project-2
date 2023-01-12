@@ -100,6 +100,17 @@ namespace Biblioteka_project_2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Category,Autor,Description,ISBN,Amount")] Book book)
         {
+            var query1 = from b in _context.Books
+                         where b.Title.ToLower() == book.Title.ToLower()
+                         select b;
+              
+            
+            if (query1.ToList().Count != 0)
+            {
+                ModelState.AddModelError("", "Książka o podanym tytule już istnieje");
+            }
+
+
             if (ModelState.IsValid)
             {
                 _context.Books.Add(book);

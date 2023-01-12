@@ -47,7 +47,7 @@ namespace Biblioteka_project_2.Models
 
         [Required(AllowEmptyStrings = true)]
 
-        public string? imgPath { get; set; } = "cover0.png";
+        public string? imgPath { get; set; } = "/images/covers/cover0.png";
 
         //public ICollection<CategoryGroup> CategoryGroups { get; set; }
     }
