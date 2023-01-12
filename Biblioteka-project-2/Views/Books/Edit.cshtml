@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<br />
-<h1>Edytuj</h1>
-<br /> 
-@Html.Partial("_BookImage")
+
+<h1>Edit</h1>
+
+<h4>Book</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,12 +16,12 @@
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" value="Tytuł" class="text-danger"></span>
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
                 <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" value="Kategoria" class="text-danger"></span>
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Autor" class="control-label"></label>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" value="Opis" class="text-danger"></span>
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ISBN" class="control-label"></label>
@@ -41,17 +41,22 @@
             <div class="form-group">
                 <label asp-for="Amount" class="control-label"></label>
                 <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" value="Ilość" class="text-danger"></span>
+                <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <label asp-for="imgPath" class="control-label"></label>
+                <input asp-for="imgPath" class="form-control" />
+                <span asp-validation-for="imgPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-warning">Powrót do listy </a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

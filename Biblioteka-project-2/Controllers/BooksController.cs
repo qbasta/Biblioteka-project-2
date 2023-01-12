@@ -46,7 +46,7 @@ namespace Biblioteka_project_2.Controllers
                 Value = string.Empty
             });
             ViewBag.ListOfCategories = CategoriesList;
-            
+
 
             //sortowanie po tytule
             ViewData["TitleSortParam"] = String.IsNullOrEmpty(SortOrder) ? "title_sort" : "";
@@ -55,14 +55,14 @@ namespace Biblioteka_project_2.Controllers
             switch (SortOrder)
             {
                 case "title_sort":
-                    default:
+                default:
                     books = books.OrderBy(b => b.Title);
                     break;
                 case "category_sort":
                     books = books.OrderBy(b => b.Category);
                     break;
                 case "author_sort":
-                    books = books.OrderBy(b => b.Autor); 
+                    books = books.OrderBy(b => b.Autor);
                     break;
             }
 
@@ -103,7 +103,7 @@ namespace Biblioteka_project_2.Controllers
             if (ModelState.IsValid)
             {
                 _context.Books.Add(book);
-                _context.Authors.Add(new Authors(){ Name = book.Autor });
+                _context.Authors.Add(new Authors() { Name = book.Autor });
                 _context.Categories.Add(new Category() { Name = book.Category });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -194,14 +194,14 @@ namespace Biblioteka_project_2.Controllers
             {
                 _context.Books.Remove(book);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BookExists(int id)
         {
-          return _context.Books.Any(e => e.Id == id);
+            return _context.Books.Any(e => e.Id == id);
         }
     }
 }

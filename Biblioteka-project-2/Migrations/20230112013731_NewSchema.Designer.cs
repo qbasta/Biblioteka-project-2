@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteka_project_2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230102234320_InitSchema")]
-    partial class InitSchema
+    [Migration("20230112013731_NewSchema")]
+    partial class NewSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,6 +75,10 @@ namespace Biblioteka_project_2.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("imgPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -421,7 +425,7 @@ namespace Biblioteka_project_2.Migrations
             modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
                 {
                     b.HasOne("Biblioteka_project_2.Models.Book", "Book")
-                        .WithMany("CategoryGroups")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -486,11 +490,6 @@ namespace Biblioteka_project_2.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Biblioteka_project_2.Models.Book", b =>
-                {
-                    b.Navigation("CategoryGroups");
                 });
 
             modelBuilder.Entity("Biblioteka_project_2.Models.Category", b =>

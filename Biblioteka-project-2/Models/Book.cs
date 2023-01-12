@@ -45,6 +45,10 @@ namespace Biblioteka_project_2.Models
         [Range(0,100, ErrorMessage = "Wartość nie może być ujemna!")]
         public int Amount { get; set; }
 
+        [Required(AllowEmptyStrings = true)]
+
+        public string? imgPath { get; set; } = "cover0.png";
+
         //public ICollection<CategoryGroup> CategoryGroups { get; set; }
     }
 }
