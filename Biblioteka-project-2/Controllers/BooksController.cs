@@ -15,10 +15,12 @@ namespace Biblioteka_project_2.Controllers
     public class BookController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<BookController> _logger;
 
-        public BookController(ApplicationDbContext context)
+        public BookController(ApplicationDbContext context, ILogger<BookController> logger)
         {
             _context = context;
+            _logger = logger;   
         }
 
         // GET: Book
@@ -135,6 +137,11 @@ namespace Biblioteka_project_2.Controllers
             {
                 return NotFound();
             }
+
+            //logs of edit
+            var username = HttpContext.User.Identity.Name;
+            _logger.LogWarning((EventId)200, "{bookid} edited by {user} on {date}", id, username, DateTime.Now); 
+
             return View(book);
         }
 

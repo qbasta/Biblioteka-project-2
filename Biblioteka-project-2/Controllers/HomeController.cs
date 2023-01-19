@@ -45,6 +45,11 @@ namespace Biblioteka_project_2.Controllers
 
         }
 
+        public IActionResult OrderForm()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

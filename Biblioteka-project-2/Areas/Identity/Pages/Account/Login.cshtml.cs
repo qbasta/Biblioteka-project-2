@@ -130,6 +130,9 @@ namespace Biblioteka_project_2.Areas.Identity.Pages.Account
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+
+                    var username = Input.Email;
+                    _logger.LogError((EventId)401, "Invalid login attempt from {username} on {date}", username, DateTime.Now);
                     return Page();
                 }
             }
