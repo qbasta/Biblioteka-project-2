@@ -9,6 +9,7 @@ using Biblioteka_project_2.Data;
 using Biblioteka_project_2.Models;
 using Microsoft.Data.SqlClient;
 using DocumentFormat.OpenXml.Office.CustomUI;
+using System.Net.Http.Headers;
 
 namespace Biblioteka_project_2.Controllers
 {
@@ -30,18 +31,38 @@ namespace Biblioteka_project_2.Controllers
             ViewData["CurrentFilter"] = SearchString;
             var books = from b in _context.Books
                         select b;
+
+            List<string> products = new();
+
+            foreach(var book in books)
+            {
+               
+                products.Add(book.Category.ToString());  
+                
+            }
+
+            var productList = products.Distinct().ToList();
+
             if (!String.IsNullOrEmpty(SearchString))
             {
                 books = books.Where(b => b.Title.Contains(SearchString));
             }
 
             //przeszukiwanie po kategorii z dropdownlist
-            var CategoriesList = (from b in _context.Books
-                                  select new SelectListItem()
-                                  {
-                                      Text = b.Category,
-                                      Value = b.Id.ToString()
-                                  }).ToList();
+            List<SelectListItem> CategoriesList = new();
+
+            foreach(var pro in productList)
+            {
+                var sel = new SelectListItem()
+                {
+                    Text = pro,
+                    Value = pro
+
+                };
+
+                CategoriesList.Add(sel);
+            }
+            
             CategoriesList.Insert(0, new SelectListItem()
             {
                 Text = "---Wybierz kategorię---",
