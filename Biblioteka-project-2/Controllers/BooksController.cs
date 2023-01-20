@@ -71,6 +71,7 @@ namespace Biblioteka_project_2.Controllers
             ViewBag.ListOfCategories = CategoriesList;
 
 
+
             //sortowanie po tytule
             ViewData["TitleSortParam"] = String.IsNullOrEmpty(SortOrder) ? "title_sort" : "";
             ViewData["CategorySortParam"] = SortOrder == "Category" ? "category_sort" : "category_sort";
