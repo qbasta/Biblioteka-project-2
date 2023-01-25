@@ -25,12 +25,57 @@ namespace Biblioteka_project_2.Controllers
         }
 
         // GET: Book
-        public async Task<IActionResult> Index(string SortOrder, string SearchString)
+        public async Task<IActionResult> Index(string SortOrder="", string SearchString="")
         {
             //przeszukiwanie po nazwie
             ViewData["CurrentFilter"] = SearchString;
-            var books = from b in _context.Books
-                        select b;
+            SearchString = string.IsNullOrEmpty(SearchString) ? "" : SearchString.ToLower();
+            var bookData = new BookViewModel();
+            //segregowanie
+            bookData.TitleSortOrder = String.IsNullOrEmpty(SortOrder) ? "title_desc" : "";
+            bookData.CategorySortOrder = SortOrder == "Category" ? "category_desc" : "category_sort";
+            bookData.AuthorSortOrder = SortOrder == "Autor" ? "author_desc" : "author_sort";
+           
+            var books = (from b in _context.Books
+                        where SearchString == "" || b.Title.ToLower().StartsWith(SearchString)
+                        select new Book
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Category = b.Category,
+                            Autor = b.Autor,
+                            Description = b.Description,
+                            ISBN = b.ISBN,
+                            Amount = b.Amount,
+                        });
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                books = books.Where(b => b.Title.Contains(SearchString));
+            }
+
+            //sortowanie po tytule
+            switch (SortOrder)
+            {
+                case "title_desc":
+                    books = books.OrderByDescending(b => b.Title);
+                    break;
+                case "category_desc":
+                    books = books.OrderByDescending(b => b.Category);
+                    break;
+                case "author_desc":
+                    books = books.OrderByDescending(b => b.Autor);
+                    break;
+                case "author_sort":
+                    books = books.OrderBy(b => b.Autor);
+                    break;
+                case "category_sort":
+                    books = books.OrderBy(b => b.Category);
+                    break;
+                default:
+                    books = books.OrderBy(b => b.Title);
+                    break;
+            }
 
             List<string> products = new();
 
@@ -40,13 +85,9 @@ namespace Biblioteka_project_2.Controllers
                 products.Add(book.Category.ToString());  
                 
             }
-
+            
             var productList = products.Distinct().ToList();
 
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                books = books.Where(b => b.Title.Contains(SearchString));
-            }
 
             //przeszukiwanie po kategorii z dropdownlist
             List<SelectListItem> CategoriesList = new();
@@ -62,7 +103,7 @@ namespace Biblioteka_project_2.Controllers
 
                 CategoriesList.Add(sel);
             }
-            
+
             CategoriesList.Insert(0, new SelectListItem()
             {
                 Text = "---Wybierz kategorię---",
@@ -70,25 +111,6 @@ namespace Biblioteka_project_2.Controllers
             });
             ViewBag.ListOfCategories = CategoriesList;
 
-
-
-            //sortowanie po tytule
-            ViewData["TitleSortParam"] = String.IsNullOrEmpty(SortOrder) ? "title_sort" : "";
-            ViewData["CategorySortParam"] = SortOrder == "Category" ? "category_sort" : "category_sort";
-            ViewData["AuthorSortParam"] = SortOrder == "Autor" ? "author_sort" : "author_sort";
-            switch (SortOrder)
-            {
-                case "title_sort":
-                default:
-                    books = books.OrderBy(b => b.Title);
-                    break;
-                case "category_sort":
-                    books = books.OrderBy(b => b.Category);
-                    break;
-                case "author_sort":
-                    books = books.OrderBy(b => b.Autor);
-                    break;
-            }
 
             return View(await books.AsNoTracking().ToListAsync());
         }

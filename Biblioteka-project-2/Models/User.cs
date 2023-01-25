@@ -1,25 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace Biblioteka_project_2.Models
 {
-    public class User
+    public class User : IdentityUser    
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
-        public string email { get; set; }
-
         [Required]
         public string Name { get; set; }
-        [Required]
+        public string? ProfilePicture { get; set; }
 
-        public string Password { get; set; }
-        [Required]
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
-        public string Role { get; set; }
     }
 }

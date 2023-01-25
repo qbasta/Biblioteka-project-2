@@ -46,9 +46,10 @@ namespace Biblioteka_project_2.Models
         public int Amount { get; set; }
 
         [Required(AllowEmptyStrings = true)]
-
+        [DisplayName("Okładka")]
         public string? imgPath { get; set; } = "/images/covers/cover0.png";
 
+        
         //public ICollection<CategoryGroup> CategoryGroups { get; set; }
     }
 }
