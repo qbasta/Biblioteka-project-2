@@ -90,14 +90,14 @@
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td align="center">
-                    @*@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))*@
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                     {
                         <a asp-action="Edit" class="btn btn-primary" asp-route-id=" @item.Id">Edytuj</a>
                     }
                     <br>
                     <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Szczegóły</a>
                     <br>
-                    @*@if (User.IsInRole("Admin"))*@
+                    @if (User.IsInRole("Admin"))
                     {
                         <a asp-action="Delete" class="btn btn-warning" asp-route-id="@item.Id">Usuń</a>
                     }
