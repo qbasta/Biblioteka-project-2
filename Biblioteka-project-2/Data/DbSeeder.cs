@@ -1,6 +1,8 @@
 ﻿using Biblioteka_project_2.Constants;
 using Biblioteka_project_2.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Biblioteka_project_2.Data
 {
@@ -47,8 +49,6 @@ namespace Biblioteka_project_2.Data
                 await userManager.AddToRoleAsync(user2, Roles.Moderator.ToString());
             }
         }
-
-
-
     }
 }
+
