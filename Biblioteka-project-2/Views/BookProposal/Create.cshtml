@@ -1,35 +1,18 @@
 ﻿@model Biblioteka_project_2.Models.BookProposal
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{
-    ViewBag.Title = "Home";
+    ViewData["Title"] = "Create";
 }
-
-@using(Html.BeginForm()){
-
 <br />
-<center>
-<h1>Kontakt:</h1>
-</center>
-<br/>
-<center>
-    <div class="card border-primary mb-3" style="max-width: 40rem; align-self: center;">
-        <h4 class="card-header">Można się z nami skontaktować w poniższy sposób:</h4>
-            <p class="card-text">Nasz telefon kontaktowy: 85 746 59 20 <br> Nasz adres mailowy: BibliotekaMolKsiazkowy@wp.pl.</p>
-        </div>
-        </center>
-
-
-<br />
-<h1>Zaproponuj swoją książkę do dodania!</h1>
+<h1>Utwórz</h1>
 <br />
 
 <hr />
 <div class="row">
-    <div class="center">
+    <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -65,5 +48,3 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     }
-
-}

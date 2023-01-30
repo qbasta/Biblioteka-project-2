@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteka_project_2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230130003118_InitSchema")]
-    partial class InitSchema
+    [Migration("20230130200624_Initschema")]
+    partial class Initschema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
