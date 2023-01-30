@@ -45,6 +45,11 @@ namespace Biblioteka_project_2.Controllers
 
         }
 
+        public IActionResult Administrator()
+        {
+            return View();
+        }
+
         public IActionResult OrderForm()
         {
             return View();

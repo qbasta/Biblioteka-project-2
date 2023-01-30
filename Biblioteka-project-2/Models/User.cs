@@ -14,6 +14,7 @@ namespace Biblioteka_project_2.Models
         public string? ProfilePicture { get; set; }
 
         public string? Role { get; set; }
+       
 
     }
 }

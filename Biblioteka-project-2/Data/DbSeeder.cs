@@ -40,12 +40,12 @@ namespace Biblioteka_project_2.Data
             var user2InDb = await userManager.FindByEmailAsync(user2.Email);
             if (user1InDb == null)
             {
-                await userManager.CreateAsync(user1, "Admin@123");
+                await userManager.CreateAsync(user1);
                 await userManager.AddToRoleAsync(user1, Roles.Admin.ToString());
             }
             if (user2InDb == null)
             {
-                await userManager.CreateAsync(user2, "Moderator@123");
+                await userManager.CreateAsync(user2);
                 await userManager.AddToRoleAsync(user2, Roles.Moderator.ToString());
             }
         }
