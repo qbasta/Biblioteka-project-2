@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public ICollection<CategoryGroup> CategoryGroups { get; set; }
+   
     }
 }

@@ -17,9 +17,6 @@ namespace Biblioteka_project_2.Data
 
         public DbSet<Borrow> Borrows { get; set; }
 
-        public DbSet<BooksAuthors> BooksAuthors { get; set; }
-
-        public DbSet<CategoryGroup> CategoryGroups { get; set; }
 
     }
 }

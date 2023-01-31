@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteka_project_2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230124012746_SecondSchema")]
-    partial class SecondSchema
+    [Migration("20230131014912_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,22 +85,6 @@ namespace Biblioteka_project_2.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Biblioteka_project_2.Models.BooksAuthors", b =>
-                {
-                    b.Property<int>("AuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthorId"), 1L, 1);
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AuthorId");
-
-                    b.ToTable("BooksAuthors");
-                });
-
             modelBuilder.Entity("Biblioteka_project_2.Models.Borrow", b =>
                 {
                     b.Property<int>("Id")
@@ -142,29 +126,6 @@ namespace Biblioteka_project_2.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("CategoryGroups");
-                });
-
             modelBuilder.Entity("Biblioteka_project_2.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -183,6 +144,10 @@ namespace Biblioteka_project_2.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -206,6 +171,7 @@ namespace Biblioteka_project_2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
@@ -389,25 +355,6 @@ namespace Biblioteka_project_2.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Biblioteka_project_2.Models.CategoryGroup", b =>
-                {
-                    b.HasOne("Biblioteka_project_2.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Biblioteka_project_2.Models.Category", "Category")
-                        .WithMany("CategoryGroups")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -457,11 +404,6 @@ namespace Biblioteka_project_2.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Biblioteka_project_2.Models.Category", b =>
-                {
-                    b.Navigation("CategoryGroups");
                 });
 #pragma warning restore 612, 618
         }
