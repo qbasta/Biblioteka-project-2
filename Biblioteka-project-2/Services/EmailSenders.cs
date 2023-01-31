@@ -16,7 +16,7 @@ public class EmailSender : IEmailSender
         Options = optionsAccessor.Value;
         _logger = logger;
     }
-
+   
     public AuthMessageSenderOptions Options { get; } //Set with Secret Manager.
 
     public async Task SendEmailAsync(string toEmail, string subject, string message)
@@ -33,7 +33,7 @@ public class EmailSender : IEmailSender
         var client = new SendGridClient(apiKey);
         var msg = new SendGridMessage()
         {
-            From = new EmailAddress("biblioteka.molksiazkowy@gmail.com", "Password Recovery"),
+            From = new EmailAddress("biblioteka.molksiazkowy@gmail.com", "Witaj w naszej bibliotece!"),
             Subject = subject,
             PlainTextContent = message,
             HtmlContent = message

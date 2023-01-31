@@ -49,6 +49,7 @@ namespace Biblioteka_project_2.Models
         [DisplayName("Okładka")]
         public string? imgPath { get; set; } = "/images/covers/cover0.png";
 
+        public string? download { get; set; } = "/files/toc0.txt";
         
         //public ICollection<CategoryGroup> CategoryGroups { get; set; }
     }
