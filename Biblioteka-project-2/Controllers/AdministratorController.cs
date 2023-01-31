@@ -42,7 +42,7 @@ namespace Biblioteka_project_2.Controllers
         public async Task<IActionResult> IndexUserRoles()
         {
             var users = await _userManager.Users.ToListAsync();
-            var userRolesViewModel = new List<User>();
+            var userRolesViewModel = new List<UserRolesViewModel>();
             foreach (User user in users)
             {
                 var thisViewModel = new UserRolesViewModel();
@@ -51,7 +51,7 @@ namespace Biblioteka_project_2.Controllers
                 thisViewModel.Name = user.Name;
                 thisViewModel.LastName = user.LastName;
                 thisViewModel.Roles = await GetUserRoles(user);
-                //userRolesViewModel.Add(thisViewModel);
+                userRolesViewModel.Add(thisViewModel);
             }
             return View(userRolesViewModel);
         }

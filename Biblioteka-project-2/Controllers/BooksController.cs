@@ -33,9 +33,7 @@ namespace Biblioteka_project_2.Controllers
             SearchString = string.IsNullOrEmpty(SearchString) ? "" : SearchString.ToLower();
             var bookData = new BookViewModel();
             //segregowanie
-            bookData.TitleSortOrder = String.IsNullOrEmpty(SortOrder) ? "title_desc" : "";
-            bookData.CategorySortOrder = SortOrder == "Category" ? "category_desc" : "category_sort";
-            bookData.AuthorSortOrder = SortOrder == "Autor" ? "author_desc" : "author_sort";
+            
            
             var books = (from b in _context.Books
                         where SearchString == "" || b.Title.ToLower().StartsWith(SearchString)
@@ -54,6 +52,9 @@ namespace Biblioteka_project_2.Controllers
             {
                 books = books.Where(b => b.Title.Contains(SearchString));
             }
+            @ViewData["TitleSortParam"] = String.IsNullOrEmpty(SortOrder) ? "title_desc" : "";
+            @ViewData["CategorySortParam"] = SortOrder == "Category" ? "category_desc" : "category_sort";
+            @ViewData["AuthorSortParam"] = SortOrder == "Autor" ? "author_desc" : "author_sort";
 
             //sortowanie po tytule
             switch (SortOrder)

@@ -90,18 +90,18 @@
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td align="center">
-                    @*@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))*@
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                     {
-                        <a asp-action="Edit" class="btn btn-primary" asp-route-id=" @item.Id">Edytuj</a>
+                        <a asp-action="Edit" width="100%" class="btn btn-primary" asp-route-id=" @item.Id">Edytuj</a>
                     }
                     <br>
-                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Szczegóły</a>
+                        <a asp-action="Details" width="100%" class="btn btn-info" asp-route-id="@item.Id">Szczegóły</a>
                     <br>
-                        <button class="btn btn-success" type="button" onclick="add(@item.Id)">Dodaj do koszyka</button>
+                        <button class="btn btn-success" width="100%" type="button" onclick="add(@item.Id)">Dodaj do koszyka</button>
                     <br>
-                    @*@if (User.IsInRole("Admin"))*@
+                    @if (User.IsInRole("Admin"))
                     {
-                        <a asp-action="Delete" class="btn btn-warning" asp-route-id="@item.Id">Usuń</a>
+                        <a asp-action="Delete"  width="100%" class="btn btn-warning" asp-route-id="@item.Id">Usuń</a>
                     }
                 </td>
             </tr>
