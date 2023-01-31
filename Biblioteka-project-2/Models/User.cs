@@ -7,12 +7,14 @@ namespace Biblioteka_project_2.Models
 {
     public class User : IdentityUser    
     {
-        [Key]
+
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public string LastName { get; set; }
         public string? ProfilePicture { get; set; }
+
+
 
     }
 }

@@ -39,10 +39,14 @@ namespace Biblioteka_project_2.Controllers
         }
 
         public IActionResult book()
-
         {
             return View();
 
+        }
+
+        public IActionResult Administrator()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
