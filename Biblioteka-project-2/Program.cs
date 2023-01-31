@@ -6,6 +6,7 @@ using Biblioteka_project_2.Services;
 using WebPWrecover.Services;
 using System.Globalization;
 using Biblioteka_project_2.Models;
+using Biblioteka_project_2.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,15 +37,16 @@ builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.Requi
     .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddTokenProvider<DataProtectorTokenProvider<User>>(TokenOptions.DefaultProvider);
-
-builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IFileService, FileService>();
 
+//builder.Services.AddScoped<ICartRepository, CartRepository>();
+//builder.Services.AddScoped<IUserOrderRepository, UserOrderRepository>();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
-var app = builder.Build();
 
+var app = builder.Build();
 app.UseRequestLocalization(localizationOptions);
 
 

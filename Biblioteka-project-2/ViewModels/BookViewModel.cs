@@ -1,4 +1,6 @@
-﻿namespace Biblioteka_project_2.Models
+﻿using Biblioteka_project_2.Models;
+
+namespace Biblioteka_project_2.ViewModels
 {
     public class BookViewModel
     {

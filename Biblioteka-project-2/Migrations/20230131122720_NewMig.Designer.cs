@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteka_project_2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230131014912_NewMigration")]
-    partial class NewMigration
+    [Migration("20230131122720_NewMig")]
+    partial class NewMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -171,7 +171,6 @@ namespace Biblioteka_project_2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")

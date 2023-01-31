@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel;
 
-namespace Biblioteka_project_2.Models
+namespace Biblioteka_project_2.ViewModels
 {
     public class CategoryViewModel
     {
