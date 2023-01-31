@@ -40,8 +40,9 @@ builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.Requi
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IFileService, FileService>();
 
-//builder.Services.AddScoped<ICartRepository, CartRepository>();
-//builder.Services.AddScoped<IUserOrderRepository, UserOrderRepository>();
+
+//builder.Services.AddTransient<ICartRepository, CartRepository>();
+//builder.Services.AddTransient<IUserOrderRepository, UserOrderRepository>();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
