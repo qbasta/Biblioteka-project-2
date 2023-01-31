@@ -12,6 +12,8 @@ namespace Biblioteka_project_2.Data
         { }
 
         public DbSet<Book> Books { get; set; }
+
+        public DbSet<BookProposal> BookProposals { get; set; } 
         public DbSet<Authors> Authors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Borrow> Borrows { get; set; }
